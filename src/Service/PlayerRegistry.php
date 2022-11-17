@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Player;
+namespace App\Service;
+
+use App\Player\PlayerInterface;
 
 class PlayerRegistry
 {
-    private array $players;
-
-    public function __construct()
+    public function __construct(private array $players)
     {
         $this->players = [];
     }
@@ -24,10 +24,5 @@ class PlayerRegistry
     public function getAll(): array
     {
         return $this->players;
-    }
-
-    public function addPlayer(PlayerInterface $player): void
-    {
-        $this->players[] = $player;
     }
 }

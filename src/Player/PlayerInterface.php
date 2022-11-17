@@ -2,7 +2,7 @@
 
 namespace App\Player;
 
-use App\State;
+use App\Game\State;
 
 interface PlayerInterface
 {

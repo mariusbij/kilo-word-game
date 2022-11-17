@@ -3,20 +3,21 @@
 namespace App\Game;
 
 use App\Player\PlayerInterface;
-use App\Player\PlayerRegistry;
-use App\State;
 
-class Game implements GameInterface
+class LuckyDrawGame implements GameInterface
 {
-    private State $state;
+    private ?State $state;
 
-    public function __construct()
+    private array $players;
+
+    public function __construct(State $state = null)
     {
-        $this->state = new State();
+        $this->state = $state ?? new State();
     }
 
     public function addPlayer(PlayerInterface $player): void
     {
+        $this->players[] = $player;
     }
 
     public function makeTurn()

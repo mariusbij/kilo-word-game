@@ -2,9 +2,9 @@
 
 namespace App\Player;
 
-use App\State;
+use App\Game\State;
 
-class Player implements PlayerInterface
+class DrunkPlayer implements PlayerInterface
 {
     public function __construct(private readonly int $playerId)
     {
