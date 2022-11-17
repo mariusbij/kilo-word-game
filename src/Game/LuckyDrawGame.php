@@ -3,16 +3,22 @@
 namespace App\Game;
 
 use App\Player\PlayerInterface;
+use App\Game\State;
+use JetBrains\PhpStorm\Pure;
 
 class LuckyDrawGame implements GameInterface
 {
     private ?State $state;
 
-    private array $players;
+    private array $players = [];
 
     public function __construct(State $state = null)
     {
-        $this->state = $state ?? new State();
+        $words = ['dog', 'sword', 'enemy', 'computer'];
+        shuffle($words);
+        $secret = $words[0];
+
+        $this->state = $state ?? State::fromWord($secret);
     }
 
     public function addPlayer(PlayerInterface $player): void
@@ -22,13 +28,13 @@ class LuckyDrawGame implements GameInterface
 
     public function makeTurn()
     {
+        foreach ($this->players as $player) {
+
+        }
     }
 
-    public function isFinished(): bool
+    #[Pure] public function isFinished(): bool
     {
-        if (in_array('_', $this->state->getMaskedWord(), true)) {
-            return false;
-        }
-        return true;
+        return $this->state->isFinished();
     }
 }
