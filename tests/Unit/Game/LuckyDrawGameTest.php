@@ -24,4 +24,17 @@ class LuckyDrawGameTest extends TestCase
         $state = $game->makeTurn();
         $this->assertSame(['h', '_'], $state->getMaskedWord());
     }
+
+    public function testGameIsFinished()
+    {
+        $game = new LuckyDrawGame(State::fromWord('h'));
+        $game->addPlayer(new FakePlayer());
+        $state = $game->makeTurn();
+        $this->assertTrue($state->isFinished());
+    }
+
+    public function testTwoRounds()
+    {
+
+    }
 }
