@@ -25,6 +25,17 @@ class State
          );
     }
 
+    public function addLetter(string $letter)
+    {
+        $i = 0;
+        foreach ($this->secret as $secretLetter) {
+            if ($secretLetter == $letter) {
+                $this->maskedWord[$i] = $letter;
+            }
+            $i++;
+        }
+    }
+
     public function getMaskedWord(): array
     {
         return $this->maskedWord;

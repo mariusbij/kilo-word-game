@@ -26,11 +26,12 @@ class LuckyDrawGame implements GameInterface
         $this->players[] = $player;
     }
 
-    public function makeTurn()
+    public function makeTurn(): State
     {
         foreach ($this->players as $player) {
-
+            $this->state->addLetter($player->guessLetter($this->state));
         }
+        return $this->state;
     }
 
     #[Pure] public function isFinished(): bool
