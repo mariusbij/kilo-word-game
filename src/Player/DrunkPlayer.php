@@ -15,7 +15,7 @@ class DrunkPlayer implements PlayerInterface
         return $this->playerId;
     }
 
-    public function guessLetter(State $state): string
+    public function __invoke(State $state): string
     {
         return chr(rand(97, 122));
     }

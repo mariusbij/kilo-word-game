@@ -13,12 +13,12 @@ class DrunkPlayerTest extends TestCase
         $state = $this->createMock(State::class);
 
         $player = new DrunkPlayer(1);
-        $letter = $player->guessLetter($state);
+        $letter = $player->__invoke($state);
 
         $this->assertIsString($letter);
         $this->assertSame(strlen($letter), 1);
 
-        $letter2 = $player->guessLetter($state);
+        $letter2 = $player->__invoke($state);
         $this->assertNotSame($letter, $letter2);
     }
 }
