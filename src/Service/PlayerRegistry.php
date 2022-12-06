@@ -2,23 +2,23 @@
 
 namespace App\Service;
 
+use App\Player\DrunkPlayer;
 use App\Player\PlayerInterface;
+use App\Player\SoberPlayer;
 
 class PlayerRegistry
 {
-    public function __construct(private array $players)
+    public function __construct(private array $players = [])
     {
-        $this->players = [];
+        $this->players = [
+            'drunk' => new DrunkPlayer(1),
+            'sober' => new SoberPlayer()
+        ];
     }
 
-    public function get($playerId): ?PlayerInterface
+    public function get(string $playerName): ?PlayerInterface
     {
-        foreach ($this->players as $player) {
-            if ($player->getPlayerId === $playerId) {
-                return $player;
-            }
-        }
-        return null;
+        return $this->players[$playerName];
     }
 
     public function getAll(): array

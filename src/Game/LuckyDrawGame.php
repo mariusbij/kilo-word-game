@@ -35,9 +35,17 @@ class LuckyDrawGame implements GameInterface
                 $this->setWinner($nick);
                 return $this->state;
             }
-
         }
         return $this->state;
+    }
+
+    /** @fixme do not return string */
+    public function autoplay(): void
+    {
+        do {
+            $this->makeTurn();
+        } while ($this->getWinner() === null);
+
     }
 
     #[Pure] public function isFinished(): bool
